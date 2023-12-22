@@ -5,7 +5,11 @@
   text-align: center;
 }
 
+.pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 .drum-pad {
   background-color: rgb(120, 119, 119);
-  padding: 3rem;
+  border: 1px solid wheat;
 }
