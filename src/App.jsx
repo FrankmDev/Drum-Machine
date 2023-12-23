@@ -31,22 +31,30 @@ const displayDrumPad = (arr1, arr2, arr3) => {
   return arr1.map((_, i) => [arr1[i], arr2[i], arr3[i]]);
 };
 
-const DrumPad = ({ ident, btnKey, source, playSound }) => {
+const DrumPad = ({ ident, btnKey, source, playSound, updateDescription }) => {
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key.toUpperCase() === btnKey) {
         playSound(btnKey);
+        updateDescription(ident);
       }
     };
     document.addEventListener("keydown", handleKeyPress);
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [btnKey, playSound]);
+  }, [btnKey, ident, playSound, updateDescription]);
 
   return (
-    <div className="drum-pad" id={ident} onClick={() => playSound(btnKey)}>
-      <audio id={btnKey} src={source}></audio>
+    <div
+      className="drum-pad"
+      id={ident}
+      onClick={() => {
+        playSound(btnKey);
+        updateDescription(ident);
+      }}
+    >
+      <audio id={btnKey} src={source} className="clip"></audio>
       {btnKey}
     </div>
   );
@@ -60,6 +68,8 @@ function App() {
     }
   };
 
+  const [description, setDescription] = useState("");
+
   return (
     <>
       <h1>Drum Machine</h1>
@@ -72,10 +82,13 @@ function App() {
               btnKey={item[0]}
               source={item[2]}
               playSound={playSound}
+              updateDescription={setDescription}
             />
           ))}
         </section>
-        <section id="display"></section>
+        <section id="display">
+          <p className="ident-text">{description}</p>
+        </section>
       </main>
     </>
   );

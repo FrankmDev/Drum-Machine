@@ -4,12 +4,19 @@
   padding: 2rem;
   text-align: center;
 }
-
+#drum-machine {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
 .pad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
 }
 .drum-pad {
   background-color: rgb(120, 119, 119);
   border: 1px solid wheat;
+  border-radius: 15px;
+  padding: 1rem;
 }
