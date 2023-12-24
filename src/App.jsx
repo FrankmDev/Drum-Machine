@@ -68,7 +68,7 @@ function App() {
     }
   };
 
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState("Press a key");
 
   return (
     <>
